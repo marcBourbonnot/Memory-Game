@@ -18,6 +18,7 @@ app.use(express.static(publicDirectory));
 
 const publicjs=path.join(__dirname, '/public/javascripts');
 app.use(express.static(publicjs));
+
 //permet de faire les liens depuis les views vers les stylesheets dans public
 const publicimg = path.join(__dirname, '/public/images');
 app.use(express.static(publicimg));
@@ -26,13 +27,18 @@ app.use(express.static(publicimg));
 app.use(express.urlencoded({extended: false}))
 //parse json bodies( sent as json)
 app.use(express.json());
+
 //création du port
-app.listen(6060,()=>{
-    console.log("serveur started on port 6000");
+const port = process.env.PORT || 3000;
+
+app.listen(port,()=>{
+    console.log("serveur started on port " + port);
 });
+
 // relier le fichier au dotenv
 const dotenv=require('dotenv');
 dotenv.config({path :'./.env'});
+
 // connexion à la base de données
 var mysql = require('mysql');
 var db    = mysql.createConnection({
