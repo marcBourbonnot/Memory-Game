@@ -1,0 +1,107 @@
+body /* Fond d'ecran */
+{
+    background-color: orange;
+}
+
+@font-face { /* Définition d'une nouvelle police nommée policeperso */
+    font-family: 'policeperso';
+    src: url('policeperso.otf');
+}
+header{
+    margin-top: -1.5em;
+    font-family: 'policeperso';
+    text-align: center;
+    font-size: 2em;
+    background-color: orangered;
+}
+h2{
+    margin-top: -1em;
+    font-size: 1em;
+    color: white;
+}
+
+section {
+
+    text-align: center;
+}
+
+section span {
+    color: green;
+}
+
+section div#message {
+    background-color: green;
+    color: white;
+    width: auto;
+    max-width: 600px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    font-size: 14pt;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+#jeu {
+    margin-top: -6em;
+    background: transparent;
+    width: auto;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#jeu img {
+
+    background-size: cover;
+    border-radius: 100px;
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 300ms ease;
+}
+
+#jeu img:hover {
+    filter: hue-rotate(20deg) saturate(500%);
+}
+
+#jeu .restart {
+    background-color:orangered;
+    border:1px solid green;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:17px;
+    font-weight:bold;
+    padding:30px 80px;
+    text-decoration:none;
+}
+
+#jeu .restart:hover {
+    background-color:#2a2dbf;
+}
+
+nav {
+    margin-top: 0em;
+    float: left;
+    width: 10%;
+    height: 400px; /* only for demonstration, should be removed */
+    padding: 10px;
+}
+
+article {
+    margin-top: 0em;
+    float: right;
+    padding: 20px;
+    width: 75%;
+    height: 100px; /* only for demonstration, should be removed */
+}
+
+.col {
+    flex: 1 0 0%;
+}

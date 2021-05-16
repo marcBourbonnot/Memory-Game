@@ -1,0 +1,80 @@
+body /* Fond d'ecran */
+{
+    background-color: orange;
+}
+
+@font-face { /* Définition d'une nouvelle police nommée policeperso */
+    font-family: 'policeperso';
+    src: url('policeperso.otf');
+}
+header{
+    font-family: 'policeperso';
+    text-align: center;
+    font-size: 2em;
+    background-color: orangered;
+}
+h2{
+    margin-top: -1em;
+    font-size: 1em;
+    color: white;
+}
+p{
+    background-color: white;
+}
+
+.theme{
+    text-align: center;
+    font-size: 3em;
+    color: green;
+    font-family: 'policeperso';
+}
+
+.nombrej{
+    text-align: center;
+    font-size: 2em;
+}
+.nombrec{
+    text-align: center;
+    font-size: 2em;
+}
+
+input[type="submit"],
+input[type="button"] {
+    background-color: green;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: orangered;
+    color: #53af57;
+}
+
+
+/*.Bdroit{
+    position:fixed;
+    bottom:3%;
+    right:3%;
+    font-size: 2.5em;
+    font-weight: normal;
+    color:black;
+    background-color: orangered;
+    border: 3px red;
+    font-weight: bold;
+    } */
+
+.Bgauche{
+    position:fixed;
+    bottom:3%;
+    left:44%;
+    font-size: 2.5em;
+    font-weight: normal;
+    color:black;
+    background-color: orangered;
+    border: 3px red;
+    font-weight: bold;
+}

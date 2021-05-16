@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Connexion</title>
+    <meta charset="utf-8" />
+    <!-- importer le fichier de style -->
+    <link rel="stylesheet" href="/Connexion.css" />
+    <link rel="stylesheet" href="/bootstrap.css">
+
+</head>
+<body>
+<header>
+    <h1><u>MEMORY GAME</u></h1>
+    <h2>Connectez vous pour commencer le defi 😉 </h2>
+</header>
+
+
+<div id="container">
+    <form action="/auth/Connexion.html" method="POST" id="ok">
+        <h1>Connexion</h1>
+
+        <label class="lab"><strong>Pseudo</strong></label>
+        <input type="text" placeholder="Entrer votre Pseudo" name="pseudo" />
+
+        <label class="lab" ><strong>Mot de passe</strong> </label>
+        <input type="password" name="mdp" placeholder="Entrer le mot de passe"/>
+
+        {% if message %}
+        <h4 class="alert alert-danger mt-4">  {{ message }}  </h4>
+        {% endif %}
+        <input type="submit" name="valid1" value="Se connecter" />
+        <br />
+        <a href="inscription">
+            <input type="button" value="S'inscrire" />
+        </a>
+        <br />
+        <br />
+    </form>
+</div>
+</body>
+</html>

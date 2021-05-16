@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!-- importer le fichier de style -->
+    <link rel="stylesheet" href="/Inscription.css" type="text/css" />
+    <link rel="stylesheet" href="/bootstrap.css">
+    <title>Inscription</title>
+</head>
+<body>
+<header>
+    <h1><u>MEMORY GAME</u></h1>
+    <h2>Inscrivez-vous rapidement pour devenir le king du game</h2>
+</header>
+
+<div id="container">
+    <form action="/auth/Inscription.html" method="post">
+        <center> <h1>Inscription</h1></center>
+
+        <font size="3" face="Ebrima"><strong>Pseudo</strong></font
+        ><br />
+        <input
+                type="text"
+                placeholder="Entrer le nom d'utilisateur"
+                name="nom"
+        /><br />
+        <font size="3" face="Ebima"><strong>Adresse-email </strong></font><br />
+        <input
+                type="text"
+                placeholder="Entrer l'adresse email d'utilisateur"
+                name="adremail"
+                pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})"
+                />
+        <br />
+
+        <font size="3" face="Ebima"><strong>Mot de passe</strong></font
+        ><br />
+        <font>
+            <!-- validation de format en html -->
+            <input
+                    type="password"
+                    placeholder="Entrer le mot de passe de l'utilisateur"
+                    name="mdp"
+
+      </font
+  ><br />
+  <font size="3" face="Ebrima"
+  ><strong>Confirmation du Mot de passe</strong></font
+  ><br />
+
+
+  <input
+          type="password"
+          placeholder="confirmer le mot de passe"
+          name="confirmepassword"
+  /><br />
+
+            {% if message %}
+                <h4 class="alert alert-danger mt-4">  {{ message }}  </h4>
+            {% endif %}
+
+
+  <!-- <input type="submit" name="valid1" value="S'inscrire" <input type="submit" name="valid1" value="s'inscrire" /> /><br>-->
+        <input type="submit" name="valid1" value="s'inscrire" />
+        <a href="Connexion.html">
+            <input type="button" value="se connecter" /> </a
+        ><br />
+    </form>
+</div>
+
+</body>
+</html>

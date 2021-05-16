@@ -1,0 +1,123 @@
+body /* Fond d'ecran */
+{
+    background-image: url(public/images/FOND/FOND.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 100px 100px ;
+    background-position: center;
+    background-color: orange;
+    background-position:50% 70%;
+
+}
+
+@font-face { /* Définition d'une nouvelle police nommée policeperso */
+    font-family: 'policeperso';
+    src: url('policeperso.otf');
+}
+p{
+    background-color: white;
+}
+
+header{
+    font-family: 'policeperso';
+    text-align: center;
+    font-size: 2em;
+    background-color: orangered;
+}
+h2{
+    margin-top: -1em;
+    font-size: 1em;
+    color: white;
+}
+
+
+.theme{
+    text-align: center;
+    font-size: 3em;
+    color: green;
+    font-family: 'policeperso';
+}
+
+
+
+.nombrej{
+    text-align: center;
+    font-size: 2em;
+}
+
+.nombrec{
+    text-align: center;
+    font-size: 2em;
+}
+.Bdroit{
+    position:fixed;
+    bottom:3%;
+    right:3%;
+    font-size: 2.5em;
+    font-weight: normal;
+    color:black;
+    background-color: orangered;
+    border: 3px red;
+    font-weight: bold;
+}
+.Bgauche{
+    position:fixed;
+    bottom:3%;
+    left:3%;
+    font-size: 2.5em;
+    font-weight: normal;
+    color:black;
+    background-color: orangered;
+    border: 3px red;
+    font-weight: bold;
+}
+
+
+#container h1 {
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+
+#container {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+/* Bordered form */
+form {
+    width: 100%;
+    padding: 30px;
+    background: orangered;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* Full-width inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type="submit"],
+input[type="button"] {
+    background-color: orange;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: green;
+    color: #53af57;
+}
