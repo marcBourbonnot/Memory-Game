@@ -42,10 +42,10 @@ dotenv.config({path :'./.env'});
 // connexion à la base de données
 var mysql = require('mysql');
 var db    = mysql.createConnection({
-    host     : process.env.DATA_HOST ,
-    user     : process.env.DATA_USER ,
-    password : process.env.DATA_MDP ,
-    database : process.env.DATA_NAME ,
+    host     : process.env.RDS_HOSTNAME,
+    user     : process.env.RDS_USERNAME,
+    password : process.env.RDS_PASSWORD,
+    port     : process.env.RDS_PORT
 });
 
 //verification de la connexion à la base de données
@@ -54,7 +54,7 @@ db.connect((error)=>{
         console.log(error);
     }
     else{
-        console.log('connexion établie...')
+        console.log('connexion établie à la base ...')
     }
 })
 
