@@ -1,6 +1,6 @@
 body /* Fond d'ecran */
 {
-    background-image: url(../images/fond.png);
+    background-image: url('FOND.png');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 100px 100px ;
