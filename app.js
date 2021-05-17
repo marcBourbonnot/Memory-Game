@@ -54,7 +54,7 @@ db.connect((error)=>{
         console.log(error);
     }
     else{
-        console.log('connexion établie...')
+        console.log('connexion établie à la base ...')
     }
 })
 
