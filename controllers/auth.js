@@ -5,10 +5,10 @@ const bcrypt = require('bcryptjs');
 //connexion à la BDD
 var mysql = require('mysql');
 var db    = mysql.createConnection({
-    host     : process.env.DATA_HOST ,
-    user     : process.env.DATA_USER ,
-    password : process.env.DATA_MDP ,
-    database : process.env.DATA_NAME ,
+    host     : process.env.RDS_HOSTNAME,
+    user     : process.env.RDS_USERNAME,
+    password : process.env.RDS_PASSWORD,
+    port     : process.env.RDS_PORT
 });
 //fonction qui permet de recuperer les données de l'inscription
 exports.register=(req,res)=>{
