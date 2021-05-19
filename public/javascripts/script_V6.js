@@ -90,3 +90,10 @@ function chrono() { // Fonction du chronomètre
 	}
 	document.getElementById("timer").innerHTML = min + ':' + sec;
 }
+//code pour bloquer les captures d'écran
+ document.addEventListener('keyup', (e) => {
+	 if (e.key === 'PrintScreen') {
+		 navigator.clipboard.writeText('');
+		 alert('Screenshots disabled!');
+	 }
+ });
