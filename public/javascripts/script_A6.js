@@ -1,6 +1,6 @@
-var images = ["A6-CARTES/VEAU.jpg","A6-CARTES/CHAT.jpg","A6-CARTES/LIONCEAU.jpg","A6-CARTES/OISEAU.jpg","A6-CARTES/POISSON.jpg","A6-CARTES/PONEY.jpg"];
+var images = ["/A6-CARTES/VEAU.jpg","/A6-CARTES/CHAT.jpg","/A6-CARTES/LIONCEAU.jpg","/A6-CARTES/OISEAU.jpg","/A6-CARTES/POISSON.jpg","/A6-CARTES/PONEY.jpg"];
 var tab = images.concat(images); // on double les images
-var dos = 'DOS/DOS.jpg'; // On met en place l'image de fond sur chaque carte retournée
+var dos = '/DOS/DOS.jpg'; // On met en place l'image de fond sur chaque carte retournée
 var clique = 0; // on definie le nombre de tentative de clic
 var paires = 0; 
 var firstchoix; // Choix de la 1ère carte

@@ -1,7 +1,9 @@
 //
 const jwt = require('jsonwebtoken');
+
 // bcrypt pour le hachage
 const bcrypt = require('bcryptjs');
+
 //connexion à la BDD
 var mysql = require('mysql');
 var db    = mysql.createConnection({
@@ -11,12 +13,13 @@ var db    = mysql.createConnection({
     port     : process.env.RDS_PORT,
     database : process.env.DATABASE
 });
+
 //fonction qui permet de recuperer les données de l'inscription
 exports.register=(req,res)=>{
     //ecrire en console les données entrées sous format json
     console.log(req.body);
     //recuperer les données entrées dans le formulaire
-    const {nom, adremail, mdp, confirmepassword}= req.body;
+    const {nom, adremail, mdp, confirmepassword} = req.body;
     if(!nom || !mdp || !adremail || !confirmepassword){
         return res.status(400).render('Inscription.html',{
             message : 'champs non renseigné !'
@@ -33,6 +36,7 @@ exports.register=(req,res)=>{
             })
         }
     })
+
     db.query('SELECT adresse_mail FROM joueurs WHERE adresse_mail=?',[adremail],async(error,result)=>{
         //si erreur dans la requete => ecrire l'erreur
         if(error){
@@ -60,9 +64,7 @@ exports.register=(req,res)=>{
             console.log(error);
         }  else{
             console.log(result);
-            return res.render('selection.html',{
-                message:'user registred'
-            });
+            return res.redirect('/selection');
         }
     })
     });
@@ -90,9 +92,7 @@ exports.login=async (req,res)=>{
                 });
             }else if(mdp==result[0].mot_de_passe){
 
-                return res.render('selection.html',{
-                    message:'user registred'
-                });
+                return res.redirect('/selection');
             }
         })
     }catch(error){
