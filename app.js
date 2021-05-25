@@ -46,7 +46,7 @@ var db    = mysql.createConnection({
     user     : process.env.RDS_USERNAME,
     password : process.env.RDS_PASSWORD,
     port     : process.env.RDS_PORT,
-    database : process.env.DATABASE
+    database : 'aws'
 });
 
 //verification de la connexion à la base de données
