@@ -87,10 +87,9 @@ section div#message {
 }
 
 nav {
-    margin-top: 0em;
+    margin-top: 5%;
     float: left;
-    width: 10%;
-    height: 400px; /* only for demonstration, should be removed */
+    width: 20%;
     padding: 10px;
 }
 
