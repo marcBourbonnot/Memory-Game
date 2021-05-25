@@ -78,3 +78,10 @@ input[type="button"]:hover {
     border: 3px red;
     font-weight: bold;
 }
+
+.logo {
+    position:fixed;
+    top:10%;
+    left:3%;
+    background-color: orangered;
+}

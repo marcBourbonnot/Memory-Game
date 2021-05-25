@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 // bcrypt pour le hachage
 const bcrypt = require('bcryptjs');
 
+//crypto pour la persistance des utilisateurs
+const crypto = require('crypto');
+
 //connexion à la BDD
 var mysql = require('mysql');
 var db    = mysql.createConnection({
@@ -13,6 +16,12 @@ var db    = mysql.createConnection({
     port     : process.env.RDS_PORT,
     database : process.env.DATABASE
 });
+
+const authTokens = {};
+
+const generateAuthToken = () => {
+    return crypto.randomBytes(64).toString('hex')
+}
 
 //fonction qui permet de recuperer les données de l'inscription
 exports.register=(req,res)=>{
@@ -28,7 +37,7 @@ exports.register=(req,res)=>{
 
     db.query('SELECT pseudo FROM joueurs WHERE pseudo=?',[nom],async(error,result)=> {
         if(error){
-            console.log(error);
+            console.log("register => pseudo => " + error);
         }
         if(result.length>0){
             return res.render('Inscription.html',{
@@ -40,7 +49,7 @@ exports.register=(req,res)=>{
     db.query('SELECT adresse_mail FROM joueurs WHERE adresse_mail=?',[adremail],async(error,result)=>{
         //si erreur dans la requete => ecrire l'erreur
         if(error){
-            console.log(error);
+            console.log("register => mail => " + error);
         }
         //si l'eamail exist ecrir qu'il exist
         if(result.length>0){
@@ -48,7 +57,7 @@ exports.register=(req,res)=>{
                 message: 'that email already exists'
             })
         // si le mdp et la confirmation differe => ecrire le message
-        }else if(mdp!==confirmepassword){
+        } else if(mdp!==confirmepassword){
            return res.render('Inscription.html',{
                message:'mots de passe differents'
            });
@@ -61,9 +70,13 @@ exports.register=(req,res)=>{
         db.query('insert into joueurs set ?',{pseudo: nom, adresse_mail: adremail, mot_de_passe: mdp},(error,result)=>{
         if(error)
         {
-            console.log(error);
+            console.log("register => insert => " + error);
         }  else{
             console.log(result);
+            let userToken = generateAuthToken();
+
+            authTokens[userToken] = nom;
+
             return res.redirect('/selection');
         }
     })

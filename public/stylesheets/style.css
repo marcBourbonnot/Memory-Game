@@ -121,3 +121,10 @@ input[type="button"]:hover {
     background-color: green;
     color: #53af57;
 }
+
+.logo {
+    position:fixed;
+    top:10%;
+    left:3%;
+    background-color: orangered;
+}
