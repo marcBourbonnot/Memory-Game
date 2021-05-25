@@ -1,6 +1,6 @@
 body /* Fond d'ecran */
 {
-    background-color: orange;
+    background: orange;
 }
 
 @font-face { /* Définition d'une nouvelle police nommée policeperso */
