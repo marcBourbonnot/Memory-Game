@@ -105,9 +105,3 @@ article {
     flex: 1 0 0%;
 }
 
-.logo {
-    position:fixed;
-    top:2.5%;
-    left:3%;
-    background-color: orangered;
-}
