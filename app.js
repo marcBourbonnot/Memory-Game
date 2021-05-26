@@ -65,17 +65,15 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
-//les routes des pages
-app.use('/', require('./routes/pages'));
-// les routes auth
-app.use('/auth',require('./routes/auth'));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//les routes des pages
+app.use('/', require('./routes/pages'));
+// les routes auth
+app.use('/auth',require('./routes/auth'));
 
 module.exports = app;

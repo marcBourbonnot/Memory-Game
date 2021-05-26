@@ -17,10 +17,8 @@ var db    = mysql.createConnection({
     database : 'aws'
 });
 
-const authTokens = {};
-
 const generateAuthToken = () => {
-    return crypto.randomBytes(64).toString('hex')
+    return crypto.randomBytes(32).toString('hex')
 }
 
 //fonction qui permet de recuperer les données de l'inscription
@@ -70,14 +68,20 @@ exports.register=(req,res)=>{
         db.query('insert into joueurs set ?',{pseudo: nom, adresse_mail: adremail, mot_de_passe: mdp},(error,result)=>{
         if(error)
         {
-            console.log("register => insert => " + error);
+            console.log("register => insert user => " + error);
         }  else{
             console.log(result);
             let userToken = generateAuthToken();
 
-            authTokens[userToken] = nom;
+            db.query('insert into tokens set ?',{username: nom, token: userToken},(error_token,result_token)=> {
+                if (error_token) {
+                    console.log("register => insert token => " + error_token);
+                } else {
+                    res.cookie('userToken', userToken)
 
-            return res.redirect('/selection');
+                    return res.redirect('/selection');
+                }
+            });
         }
     })
     });
@@ -93,7 +97,7 @@ exports.login=async (req,res)=>{
             })
         }
 
-        db.query('SELECT * FROM joueurs WHERE pseudo = ?',[pseudo],async(error,result)=> {
+        db.query('SELECT * FROM joueurs WHERE pseudo = ? LIMIT 1',[pseudo],async(error,result)=> {
             console.log(result);
             if (result.length==0) {
                     res.status(401).render('Connexion.html', {
@@ -104,8 +108,20 @@ exports.login=async (req,res)=>{
                     message: 'mdp incorrect!'
                 });
             }else if(mdp==result[0].mot_de_passe){
+                console.log(result[0]['pseudo'])
 
-                return res.redirect('/selection');
+                db.query('SELECT token FROM tokens WHERE username=? LIMIT 1',[result[0].pseudo],async(error_token,result_token)=> {
+                    if(error_token){
+                        console.log("getAuthToken => " + result[0].pseudo + " => " + error_token);
+                    }
+                    let userToken;
+                    if (result_token.length > 0) {
+                        userToken = result_token[0].token;
+                        res.cookie('userToken', userToken);
+
+                        return res.redirect('/selection');
+                    }
+                })
             }
         })
     }catch(error){

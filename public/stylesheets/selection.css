@@ -55,29 +55,9 @@ input[type="button"]:hover {
     color: #53af57;
 }
 
-
-/*.Bdroit{
-    position:fixed;
-    bottom:3%;
-    right:3%;
-    font-size: 2.5em;
-    font-weight: normal;
-    color:black;
-    background-color: orangered;
-    border: 3px red;
-    font-weight: bold;
-    } */
-
-.Bgauche{
-    position:fixed;
-    bottom:3%;
-    left:44%;
-    font-size: 2.5em;
-    font-weight: normal;
-    color:black;
-    background-color: orangered;
-    border: 3px red;
-    font-weight: bold;
+input[type="button"].logout {
+    margin: 5% 40%;
+    width: 20%;
 }
 
 .logo {

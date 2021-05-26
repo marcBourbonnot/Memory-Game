@@ -16,34 +16,60 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/auth/connexion', (req, res) => {
-    res.render('Connexion.html');
+    if (req.query.message) {
+        res.render('Connexion.html', {message: req.query.message});
+    } else {
+        res.render('Connexion.html');
+    }
 });
 router.get('/auth/inscription', (req, res) => {
     res.render('Inscription.html');
 });
 router.get('/selection', (req, res) => {
-    res.render('selection.html');
+    if (req.cookies['userToken'] !== undefined) {
+        db.query('SELECT * FROM tokens WHERE token=? LIMIT 1', [req.cookies['userToken']], async(error,result) => {
+            if (error) {
+                console.log("isAuth => error => recup token info" + error);
+            } else {
+                if (result !== undefined) {
+                    res.render('selection.html');
+                } else {
+                    res.redirect("/auth/connexion?message=Il faut se connecter ou s'inscrire pour accéder à la page !");
+                }
+            }
+        });
+    } else {
+        res.redirect("/auth/connexion?message=Il faut se connecter ou s'inscrire pour accéder à la page !");
+    }
 });
 
-router.get('/jeu_V6', (req, res) => {
-    db.query('SELECT pseudo, score FROM joueurs WHERE score IS NOT NULL ORDER BY score ASC LIMIT 5', async(error,result) => {
-        res.render('jeu_V6.html', { best_players: result});
-    });
+router.get('/jeu_(V|A)(6|9)', (req, res) => {
+    if (req.cookies['userToken'] !== undefined) {
+        db.query('SELECT * FROM tokens WHERE token=? LIMIT 1', [req.cookies['userToken']], async(error,result) => {
+            if (error) {
+                console.log("isAuth => error => recup token info" + error);
+            } else {
+                if (result !== undefined) {
+                    db.query('SELECT pseudo, score FROM joueurs WHERE score IS NOT NULL ORDER BY score ASC LIMIT 5', async(error_score,result_score) => {
+                        if (error_score) {
+                            console.log("/jeu => error => recup highscore" + error_score);
+                        } else {
+                            res.render(req.path.replace('/', '') + '.html', { best_players: result_score});
+                        }
+                    });
+                } else {
+                    res.redirect("/auth/connexion?message=Il faut se connecter ou s'inscrire pour accéder à la page !");
+                }
+            }
+        });
+    } else {
+        res.redirect("/auth/connexion?message=Il faut se connecter ou s'inscrire pour accéder à la page !");
+    }
 });
-router.get('/jeu_V9', (req, res) => {
-    db.query('SELECT pseudo, score FROM joueurs WHERE score IS NOT NULL ORDER BY score ASC LIMIT 5', async(error,result) => {
-        res.render('jeu_V9.html', { best_players: result});
-    });
-});
-router.get('/jeu_A6', (req, res) => {
-    db.query('SELECT pseudo, score FROM joueurs WHERE score IS NOT NULL ORDER BY score ASC LIMIT 5', async(error,result) => {
-        res.render('jeu_A6.html', { best_players: result});
-    });
-});
-router.get('/jeu_A9', (req, res) => {
-    db.query('SELECT pseudo, score FROM joueurs WHERE score IS NOT NULL ORDER BY score ASC LIMIT 5', async(error,result) => {
-        res.render('jeu_A9.html', { best_players: result});
-    });
+router.get('/logout', (req, res) => {
+    if (req.cookies['userToken'] !== undefined)
+        res.clearCookie('userToken');
+    res.redirect('/auth/connexion');
 });
 
 module.exports = router;
